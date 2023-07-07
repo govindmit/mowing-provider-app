@@ -72,7 +72,8 @@
     <key>NSPhotoLibraryUsageDescription</key>
     <string>Photo Library Access Warning</string>
 
-    <key>Privacy - Camera Usage Description</key>
-    <string>APPNAME requires access to your phone’s camera.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>This app requires to access your photo library to show image on profile and send via chat</string>
+
 </dict>
 </plist>
