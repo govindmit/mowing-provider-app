@@ -111,7 +111,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     } else {
       if (json.decode(response.body)["success"]) {
         activeUser = json.decode(response.body)["success"];
-
+        if (mounted) {
+          setState(() {});
+        }
         SharedPreferences localStorage = await SharedPreferences.getInstance();
         //
         await localStorage.setString(

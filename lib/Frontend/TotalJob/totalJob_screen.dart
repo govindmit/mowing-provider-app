@@ -79,7 +79,9 @@ class _TotalJobState extends State<TotalJob> with TickerProviderStateMixin {
       if (json.decode(response.body)["success"]) {
         activeUser = json.decode(response.body)["success"];
         List jsonResponse = json.decode(response.body)["data"]["jobs"];
-        print(jsonResponse);
+        if (mounted) {
+          setState(() {});
+        }
         return jsonResponse.map((data) => Data.fromJson(data)).toList();
       } else {
         activeUser = false;

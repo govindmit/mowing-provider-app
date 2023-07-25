@@ -79,6 +79,9 @@ class _RequestsState extends State<Requests> with TickerProviderStateMixin {
       if (json.decode(response.body)["success"]) {
         activeUser = json.decode(response.body)["success"];
         List jsonResponse = json.decode(response.body)["data"]["jobs"];
+        if (mounted) {
+          setState(() {});
+        }
         return jsonResponse.map((data) => Data.fromJson(data)).toList();
       } else {
         activeUser = false;

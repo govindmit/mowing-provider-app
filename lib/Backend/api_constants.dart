@@ -7,8 +7,6 @@ import 'package:laravel_echo/laravel_echo.dart';
 import 'package:mowing_plowing_vendorapp/Backend/base_client.dart';
 
 String uri = "https://mowingandplowing.com";
-//String uri = "https://staging.mowingandplowing.com";
-// String uri = "https://mowing-plowing.mangoitsol.com";
 String uri1 = "mowingandplowing.com";
 
 Map<String, String> requestHeaders(String token) {

@@ -856,7 +856,6 @@ class _UploadLawnImagesState extends State<UploadLawnImages> {
                     onPressed: imageFileList!.length > 2 && enableButton
                         ? () async {
                             if (imageFileList!.isNotEmpty) {
-                              print(imageFileList);
                               var response = await BaseClient().activeJobStatus(
                                 "/active-job/reached-and-started-job/${widget.id}",
                                 null,
@@ -867,33 +866,33 @@ class _UploadLawnImagesState extends State<UploadLawnImages> {
                                 imageFileList = [];
                                 if (mounted) {
                                   setState(() {});
-                                  checkPermissionStatus(
-                                    'jobStarted',
-                                    widget.ln,
-                                    widget.lt,
-                                    widget.address,
-                                    widget.date,
-                                    widget.grand_total,
-                                    widget.id,
-                                    widget.period,
-                                    widget.service_for,
-                                  );
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) => TrackService(
-                                  //       address: widget.address,
-                                  //       date: widget.date,
-                                  //       grand_total: widget.grand_total,
-                                  //       id: widget.id,
-                                  //       period: widget.period,
-                                  //       service_for: widget.service_for,
-                                  //       fromWhere: 'jobStarted',
-                                  //       ln: widget.ln,
-                                  //       lt: widget.lt,
-                                  //     ),
-                                  //   ),
-                                  // ).then(onGoBack);
+                                  // checkPermissionStatus(
+                                  //   'jobStarted',
+                                  //   widget.ln,
+                                  //   widget.lt,
+                                  //   widget.address,
+                                  //   widget.date,
+                                  //   widget.grand_total,
+                                  //   widget.id,
+                                  //   widget.period,
+                                  //   widget.service_for,
+                                  // );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => TrackService(
+                                        address: widget.address,
+                                        date: widget.date,
+                                        grand_total: widget.grand_total,
+                                        id: widget.id,
+                                        period: widget.period,
+                                        service_for: widget.service_for,
+                                        fromWhere: 'jobStarted',
+                                        ln: widget.ln,
+                                        lt: widget.lt,
+                                      ),
+                                    ),
+                                  ).then(onGoBack);
                                 }
                                 await EasyLoading.dismiss();
                               } else {
