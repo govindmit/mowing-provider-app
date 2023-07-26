@@ -56,6 +56,8 @@ class _TrackServiceState extends State<TrackService> {
 
   Completer<GoogleMapController> _controller = Completer();
 
+  late GoogleMapController controller;
+
   Set<Marker> _markers = Set<Marker>();
 
   Set<Polyline> _polylines = Set<Polyline>();
@@ -165,6 +167,7 @@ class _TrackServiceState extends State<TrackService> {
     super.dispose();
     timer?.cancel();
     stopListeningLocation();
+    controller.dispose();
   }
 
   void setSourceAndDestinationIcons() async {
@@ -534,6 +537,9 @@ class _TrackServiceState extends State<TrackService> {
                                                                 .fromHeight(50),
                                                           ),
                                                           onPressed: () {
+                                                            stopListeningLocation();
+                                                            controller
+                                                                .dispose();
                                                             setState(() {
                                                               showMap = false;
                                                             });
@@ -562,7 +568,14 @@ class _TrackServiceState extends State<TrackService> {
                                                                   lt: widget.lt,
                                                                 ),
                                                               ),
-                                                            );
+                                                            ).then((value) =>
+                                                                setState(() {
+                                                                  showMap =
+                                                                      true;
+                                                                  _controller =
+                                                                      Completer();
+                                                                  startListeningLocation();
+                                                                }));
                                                           },
                                                           child: const Text(
                                                             'Reached',
@@ -587,6 +600,9 @@ class _TrackServiceState extends State<TrackService> {
                                                                 .fromHeight(50),
                                                           ),
                                                           onPressed: () {
+                                                            stopListeningLocation();
+                                                            controller
+                                                                .dispose();
                                                             setState(() {
                                                               showMap = false;
                                                             });
@@ -599,7 +615,14 @@ class _TrackServiceState extends State<TrackService> {
                                                                   id: widget.id,
                                                                 ),
                                                               ),
-                                                            );
+                                                            ).then((value) =>
+                                                                setState(() {
+                                                                  showMap =
+                                                                      true;
+                                                                  _controller =
+                                                                      Completer();
+                                                                  startListeningLocation();
+                                                                }));
                                                           },
                                                           child: const Text(
                                                             'Job Completed',
@@ -732,8 +755,11 @@ class _TrackServiceState extends State<TrackService> {
       bearing: 30,
       target: LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
     );
-    final GoogleMapController controller = await _controller.future;
+    controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(cPosition));
+    if (mounted) {
+      setState(() {});
+    }
     // do this inside the setState() so Flutter gets notified
     // that a widget update is due
     // updated position
