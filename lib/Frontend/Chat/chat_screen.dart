@@ -16,10 +16,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Backend/api_constants.dart';
 import '../../Backend/base_client.dart';
+import '../Home/noti.dart';
 import '../Login/login_screen.dart';
 
 class Chat extends StatefulWidget {
   final String orderId;
+
   const Chat({
     super.key,
     required this.orderId,
@@ -50,6 +52,7 @@ class _ChatState extends State<Chat> {
   //
   late FlutterPusher pusherClient;
   late Echo echo;
+
   void onConnectionStateChange(ConnectionStateChange event) {
     // print("2");
     // print("STATE:${event.currentState}");
@@ -61,6 +64,7 @@ class _ChatState extends State<Chat> {
       // print('disconnected');
     }
   }
+
   //
   //
 
@@ -74,6 +78,19 @@ class _ChatState extends State<Chat> {
     // listen
     //
     echo.private("notifications.$providerId").stopListening('.NewNotification');
+    echo.private("notifications.$providerId").listen('.NewNotification',
+        (notification) {
+      Noti.showNotification(notification["notification"]);
+      // QuickAlert.show(
+      //   context: context,
+      //   type: QuickAlertType.info,
+      //   title: "${notification["notification"]["title"]}",
+      //   text: '${notification["notification"]["content"]}',
+      //   cancelBtnText: "Ok",
+      //   confirmBtnColor: Colors.yellow[600]!,
+      //   showCancelBtn: false,
+      // );
+    });
     echo.private("order-live-chat.${widget.orderId}").listen(
           ".MessageSent",
           (e) => {
@@ -99,6 +116,7 @@ class _ChatState extends State<Chat> {
           },
         );
   }
+
   //
   //
 
@@ -191,6 +209,7 @@ class _ChatState extends State<Chat> {
       }
     }
   }
+
   //
   //
 
@@ -205,6 +224,7 @@ class _ChatState extends State<Chat> {
     providerImage = userMap!["image"];
     load = false;
   }
+
   //
   //
 
@@ -351,6 +371,7 @@ class _ChatState extends State<Chat> {
       );
     }
   }
+
   //
   //
 
@@ -409,6 +430,7 @@ class _ChatState extends State<Chat> {
       }
     }
   }
+
   //
   //
 
@@ -465,6 +487,7 @@ class _ChatState extends State<Chat> {
       ),
     );
   }
+
   //
   //
 
@@ -483,15 +506,16 @@ class _ChatState extends State<Chat> {
     pusherClient.connect(onConnectionStateChange: onConnectionStateChange);
     echo.private("notifications.$providerId").listen('.NewNotification',
         (notification) {
-      QuickAlert.show(
-        context: context,
-        type: QuickAlertType.info,
-        title: "${notification["notification"]["title"]}",
-        text: '${notification["notification"]["content"]}',
-        cancelBtnText: "Ok",
-        confirmBtnColor: Colors.yellow[600]!,
-        showCancelBtn: false,
-      );
+      Noti.showNotification(notification["notification"]);
+      // QuickAlert.show(
+      //   context: context,
+      //   type: QuickAlertType.info,
+      //   title: "${notification["notification"]["title"]}",
+      //   text: '${notification["notification"]["content"]}',
+      //   cancelBtnText: "Ok",
+      //   confirmBtnColor: Colors.yellow[600]!,
+      //   showCancelBtn: false,
+      // );
     });
     super.dispose();
   }

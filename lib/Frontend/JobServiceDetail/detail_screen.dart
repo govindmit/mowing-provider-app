@@ -568,7 +568,7 @@ class _DetailState extends State<Detail> with TickerProviderStateMixin {
 
   Future<void> goBack() async {
     if (mounted) {
-      Navigator.pushAndRemoveUntil(
+      Navigator.pushReplacement(
         context,
         PageTransition(
           type: PageTransitionType.rightToLeftWithFade,
@@ -576,8 +576,17 @@ class _DetailState extends State<Detail> with TickerProviderStateMixin {
             index: 2,
           ),
         ),
-        (route) => false,
       );
+      // Navigator.pushAndRemoveUntil(
+      //   context,
+      //   PageTransition(
+      //     type: PageTransitionType.rightToLeftWithFade,
+      //     child: BottomNavBar(
+      //       index: 2,
+      //     ),
+      //   ),
+      //   (route) => false,
+      // );
     }
   }
 

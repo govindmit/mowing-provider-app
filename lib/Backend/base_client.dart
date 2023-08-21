@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-String uri = "https://staging.mowingandplowing.com";
-// String uri = "https://mowingandplowing.com";
+// String uri = "https://staging.mowingandplowing.com";
+String uri = "https://mowingandplowing.com";
 // String uri = "https://mowing-plowing.mangoitsol.com";
 // http://masterbranch-env.us-east-1.elasticbeanstalk.com/login
 
@@ -1001,7 +1001,7 @@ class BaseClient {
       body: body,
     );
     // await EasyLoading.dismiss();
-
+    // print(response.body);
     return json.decode(response.body);
   }
   //
@@ -1547,4 +1547,30 @@ class BaseClient {
     return json.decode(response.body);
   }
   //
+
+  // get service detail
+  //
+  Future<dynamic> getServiceDetail(
+    String api,
+  ) async
+  //
+  {
+    await EasyLoading.show(
+      maskType: EasyLoadingMaskType.black,
+    );
+    await getToken();
+    var url = Uri.parse(baseUrl + api);
+    var tokenHeaders = {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    };
+    var response = await client.get(
+      url,
+      headers: tokenHeaders,
+    );
+    await EasyLoading.dismiss();
+    var jobData = json.decode(response.body);
+    return jobData['data']['jobs'][0];
+  }
 }
