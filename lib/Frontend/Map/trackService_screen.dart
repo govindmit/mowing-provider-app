@@ -570,8 +570,8 @@ class _TrackServiceState extends State<TrackService> {
                                                               ),
                                                             ).then((value) =>
                                                                 setState(() {
-                                                                  showMap =
-                                                                      true;
+                                                                  // showMap =
+                                                                  //     true;
                                                                   _controller =
                                                                       Completer();
                                                                   startListeningLocation();
@@ -617,8 +617,8 @@ class _TrackServiceState extends State<TrackService> {
                                                               ),
                                                             ).then((value) =>
                                                                 setState(() {
-                                                                  showMap =
-                                                                      true;
+                                                                  // showMap =
+                                                                  //     true;
                                                                   _controller =
                                                                       Completer();
                                                                   startListeningLocation();

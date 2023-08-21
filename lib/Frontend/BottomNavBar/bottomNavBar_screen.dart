@@ -113,7 +113,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   void completeFunct() {
     localStorageData().then((value) async {
-      _setUpEcho();
+      // _setUpEcho();
       if (mounted) {
         setState(() {});
       }

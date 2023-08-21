@@ -8,6 +8,7 @@ import 'package:location/location.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../../Backend/base_client.dart';
+import '../Chat/chat_screen.dart';
 import '../JobServiceDetail/detail_screen.dart';
 import '../Login/login_screen.dart';
 import '../Map/trackService_screen.dart';
@@ -574,6 +575,45 @@ class _ActiveServiceState extends State<ActiveService>
                                                                         MainAxisAlignment
                                                                             .end,
                                                                     children: [
+                                                                      InkWell(
+                                                                        onTap:
+                                                                            () {
+                                                                          Navigator
+                                                                              .push(
+                                                                            context,
+                                                                            PageTransition(
+                                                                              type: PageTransitionType.rightToLeftWithFade,
+                                                                              // 3
+                                                                              child: Chat(
+                                                                                orderId: data[index].id.toString(),
+                                                                              ),
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                        child:
+                                                                            Container(
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                HexColor("#DCFFE7"),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(30),
+                                                                          ),
+                                                                          child:
+                                                                              Padding(
+                                                                            padding:
+                                                                                const EdgeInsets.all(10),
+                                                                            child:
+                                                                                ImageIcon(
+                                                                              const AssetImage(
+                                                                                "images/chat.png",
+                                                                              ),
+                                                                              color: HexColor("#24B550"),
+                                                                              size: 20,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
                                                                       TextButton(
                                                                         onPressed: data[index].on_the_way == null &&
                                                                                 data[index].at_location_and_started_job == null &&
@@ -959,6 +999,45 @@ class _ActiveServiceState extends State<ActiveService>
                                                                         MainAxisAlignment
                                                                             .end,
                                                                     children: [
+                                                                      InkWell(
+                                                                        onTap:
+                                                                            () {
+                                                                          Navigator
+                                                                              .push(
+                                                                            context,
+                                                                            PageTransition(
+                                                                              type: PageTransitionType.rightToLeftWithFade,
+                                                                              // 3
+                                                                              child: Chat(
+                                                                                orderId: data[index].id.toString(),
+                                                                              ),
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                        child:
+                                                                            Container(
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                HexColor("#DCFFE7"),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(30),
+                                                                          ),
+                                                                          child:
+                                                                              Padding(
+                                                                            padding:
+                                                                                const EdgeInsets.all(10),
+                                                                            child:
+                                                                                ImageIcon(
+                                                                              const AssetImage(
+                                                                                "images/chat.png",
+                                                                              ),
+                                                                              color: HexColor("#24B550"),
+                                                                              size: 20,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
                                                                       TextButton(
                                                                         onPressed: data[index].on_the_way == null &&
                                                                                 data[index].at_location_and_started_job == null &&
@@ -1344,6 +1423,45 @@ class _ActiveServiceState extends State<ActiveService>
                                                                         MainAxisAlignment
                                                                             .end,
                                                                     children: [
+                                                                      InkWell(
+                                                                        onTap:
+                                                                            () {
+                                                                          Navigator
+                                                                              .push(
+                                                                            context,
+                                                                            PageTransition(
+                                                                              type: PageTransitionType.rightToLeftWithFade,
+                                                                              // 3
+                                                                              child: Chat(
+                                                                                orderId: data[index].id.toString(),
+                                                                              ),
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                        child:
+                                                                            Container(
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                HexColor("#DCFFE7"),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(30),
+                                                                          ),
+                                                                          child:
+                                                                              Padding(
+                                                                            padding:
+                                                                                const EdgeInsets.all(10),
+                                                                            child:
+                                                                                ImageIcon(
+                                                                              const AssetImage(
+                                                                                "images/chat.png",
+                                                                              ),
+                                                                              color: HexColor("#24B550"),
+                                                                              size: 25,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
                                                                       TextButton(
                                                                         onPressed: data[index].on_the_way == null &&
                                                                                 data[index].at_location_and_started_job == null &&

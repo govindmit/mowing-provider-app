@@ -189,7 +189,9 @@ class _ReviewsRatingsState extends State<ReviewsRatings>
                                                 double.parse(totalRating!),
                                             direction: Axis.horizontal,
                                             allowHalfRating: false,
-                                            itemCount: int.parse(totalRating!),
+                                            itemCount:
+                                                double.parse(totalRating!)
+                                                    .round(),
                                             itemPadding:
                                                 const EdgeInsets.symmetric(
                                                     horizontal: 4.0),
@@ -354,7 +356,7 @@ class _ReviewsRatingsState extends State<ReviewsRatings>
                                                                             children: [
                                                                               Expanded(
                                                                                 child: Text(
-                                                                                  data[index].comment,
+                                                                                  data[index].comment ?? '',
                                                                                   style: TextStyle(
                                                                                     color: Colors.black,
                                                                                     fontSize: size.width * 0.025,

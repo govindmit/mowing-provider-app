@@ -56,7 +56,7 @@ class _UploadLawnImagesState extends State<UploadLawnImages> {
   List<XFile>? imageFileList = [];
   Future<void> goBack() async {
     if (mounted) {
-      Navigator.pushAndRemoveUntil(
+      Navigator.pushReplacement(
         context,
         PageTransition(
           type: PageTransitionType.rightToLeftWithFade,
@@ -64,8 +64,17 @@ class _UploadLawnImagesState extends State<UploadLawnImages> {
             index: 2,
           ),
         ),
-        (route) => false,
       );
+      // Navigator.pushAndRemoveUntil(
+      //   context,
+      //   PageTransition(
+      //     type: PageTransitionType.rightToLeftWithFade,
+      //     child: BottomNavBar(
+      //       index: 2,
+      //     ),
+      //   ),
+      //   (route) => false,
+      // );
     }
   }
 

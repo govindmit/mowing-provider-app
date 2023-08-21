@@ -14,6 +14,7 @@ import '../BottomNavBar/bottomNavBar_screen.dart';
 
 class UploadCompletedJobImages extends StatefulWidget {
   final int id;
+
   const UploadCompletedJobImages({
     super.key,
     required this.id,
@@ -38,7 +39,7 @@ class _UploadCompletedJobImagesState extends State<UploadCompletedJobImages> {
 
   Future<void> goBack() async {
     if (mounted) {
-      Navigator.pushAndRemoveUntil(
+      Navigator.pushReplacement(
         context,
         PageTransition(
           type: PageTransitionType.rightToLeftWithFade,
@@ -46,8 +47,17 @@ class _UploadCompletedJobImagesState extends State<UploadCompletedJobImages> {
             index: null,
           ),
         ),
-        (route) => false,
       );
+      // Navigator.pushAndRemoveUntil(
+      //   context,
+      //   PageTransition(
+      //     type: PageTransitionType.rightToLeftWithFade,
+      //     child: BottomNavBar(
+      //       index: null,
+      //     ),
+      //   ),
+      //   (route) => false,
+      // );
     }
   }
 
